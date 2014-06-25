@@ -30,7 +30,9 @@ public class Workout extends JFrame {
 		output.println(sdf.format(cal.getTime())); // Add date to file
 
 		JFrame frame = new Workout();
-		frame.setTitle("Luigi's Workout App");
+		frame.setTitle("Luigi's Workout Tracker");
+		ImageIcon appIcon = new ImageIcon("C:/MyWork/Images/Muscle.png");
+		frame.setIconImage(appIcon.getImage());
 		JTextField workout1 = new JTextField("Push ups");
 		JTextField set1 = new JTextField();
 		JTextField rep1 = new JTextField();
