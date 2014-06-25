@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
+import java.io.*;
 import java.util.*;
 
 public class Workout extends JFrame {
@@ -42,29 +43,30 @@ public class Workout extends JFrame {
 
 		JCheckBox abs = new JCheckBox("Abs?");
 		JCheckBox squat = new JCheckBox("Squats?");
-		JButton log = new JButton("Log");
-		log.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Get this button to do stuff");
-			}
-
-		});
 		add(abs);
 		add(squat);
-		add(log);
 	}
 
-	public static void main(String[] args) {
-
-		// Get current date information
-		Calendar cal = Calendar.getInstance();
-		// Set format to hour
-    	SimpleDateFormat sdf = new SimpleDateFormat("HH/mm/ss");
-
-
+	public static void main(String[] args) throws Exception {
 		JFrame frame = new Workout();
 		frame.setTitle("Luigi's Workout App");
+		JButton log = new JButton("Log");
+		// Get current date information
+		Calendar cal = Calendar.getInstance();
+		// Set format
+    	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy HH:mm a");
+    	File file = new File("C:/Users/Legato/Desktop/Workout Log.txt");
+    	PrintWriter output = new PrintWriter(new FileWriter(file, true));
+		output.println(sdf.format(cal.getTime()));
+
+    	log.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Closing...");
+				output.close();
+			}
+		});
+    	frame.add(log);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
