@@ -33,6 +33,7 @@ public class Workout extends JFrame {
 		frame.setTitle("Luigi's Workout Tracker");
 		ImageIcon appIcon = new ImageIcon("C:/MyWork/Images/Muscle.png");
 		frame.setIconImage(appIcon.getImage());
+		
 		JTextField workout1 = new JTextField("Push ups");
 		JTextField set1 = new JTextField();
 		JTextField rep1 = new JTextField();
@@ -68,7 +69,14 @@ public class Workout extends JFrame {
 				output.println(set2.getText() + " x " + rep2.getText() + " " + workout2.getText());
 				output.println(set3.getText() + " x " + rep3.getText() + " " + workout3.getText());
 				output.close();
-			}
+				try {
+				   Thread.sleep(1500);
+				} 
+				catch (InterruptedException i) {
+				   i.printStackTrace();
+				}
+				System.exit(0);
+				}
 		});
     	frame.add(log);
 		frame.pack();
