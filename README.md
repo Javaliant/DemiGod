@@ -1,4 +1,4 @@
 DemiGod
 =======
 
-Workout App
+Simple Workout tracking application.
