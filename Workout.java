@@ -3,7 +3,7 @@ A simple application to keep track of workouts
 TO DO:
  ** A way to check that set and rep are actually numbers - DONE
  ** Not display them on the log if fields are left blank - DONE
- ** Functionality to checkboxes
+ ** Functionality to checkboxes - DONE
  ** Consolidation of redundant information - DONE
  ** Ensure file exists or create if it doesn't - DONE
  ** Add analytics to keep track information e.g. weekly progres, progress since last workout, etc
@@ -64,8 +64,29 @@ public class Workout extends JFrame {
 			frame.add(reps[i]);
 		}
 
+		// Create checkboxes
 		JCheckBox abs = new JCheckBox("Abs?");
 		JCheckBox squat = new JCheckBox("Squats?");
+		// Create Listener
+		ActionListener checkListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == abs) {
+					if (abs.isSelected()) {
+                    	output.println("Ab Workout done!");
+                	}
+				}
+				else if (e.getSource() == squat) {
+					if (squat.isSelected()) {
+                   		output.println("Squat Workout done!");
+                	}
+				}
+			}
+		};
+		// Register listener with checkboxes
+		abs.addActionListener(checkListener);
+		squat.addActionListener(checkListener);
+		// Add checkboxes to frame
 		frame.add(abs);
 		frame.add(squat);
 		JButton log = new JButton("Log"); // To log everything
@@ -74,11 +95,12 @@ public class Workout extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Comitting everything to file.\nClosing...");
-				output.println("\n"); // Line break
 				for (int i = 0; i < 3; i++) {
 					// Checks if fields are populated
 					if (sets[i].getText().length() > 0 && reps[i].getText().length() > 0) {
-						output.println( sets[i].getText() + " x " + reps[i].getText() + " " + workouts[i].getText() );
+						if (Integer.parseInt(sets[i].getText()) > 0 && Integer.parseInt(reps[i].getText()) > 0) {
+							output.println( sets[i].getText() + " x " + reps[i].getText() + " " + workouts[i].getText() );
+						}
 					}
 				}
 				output.close();
