@@ -16,9 +16,9 @@ import java.text.SimpleDateFormat;
 import java.io.*;
 import java.util.*;
 
-public class Workout extends JFrame {
+public class WorkoutTracker extends JFrame {
 
-	public Workout() {
+	public WorkoutTracker() {
 		setLayout(new GridLayout(5, 3));
 		// Labels
 		add(new JLabel("Workout"));
@@ -44,7 +44,7 @@ public class Workout extends JFrame {
     	output.println(); // Line break
 		output.println(sdf.format(cal.getTime())); // Add date to file
 		// Create Frame 
-		JFrame frame = new Workout();
+		JFrame frame = new WorkoutTracker();
 		frame.setTitle("Luigi's Workout Tracker"); // title
 		// Set Icon image
 		ImageIcon appIcon = new ImageIcon("Images/Muscle.png");
