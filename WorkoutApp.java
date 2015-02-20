@@ -16,9 +16,7 @@ import java.util.List;
 
 public class WorkoutApp implements WorkoutUiHandler {
     private static final Path file = Paths.get("Workout Log.txt");
-    private final DateTimeFormatter dateTimeFormatter = 
-    	DateTimeFormatter.ofPattern("MM/dd/yy HH:mm a")
-    ;
+    private final DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("MM/dd/yy HH:mm a");
 
     private final LocalDateTime start;
     private WorkoutPresenter workoutPresenter;
